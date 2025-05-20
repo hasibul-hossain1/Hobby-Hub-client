@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 function Footer() {
   return (
-    <footer className="footer  justify-items-center sm:footer-horizontal bg-base-200 text-neutral-content p-10">
+    <footer className="footer mt-32 justify-items-center sm:footer-horizontal bg-base-200 text-neutral-content p-10">
       <aside>
         <StyledWrapper>
           <div className="cbg">

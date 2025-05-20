@@ -3,7 +3,6 @@ import Hero from './Hero'
 import FeaturedGroup from './FeaturedGroup'
 import HowItWorks from './HowItWorks'
 import Reviews from './Reviews'
-import Footer from '../common/Footer'
 
 function Home() {
   return (
@@ -12,7 +11,6 @@ function Home() {
         <FeaturedGroup/>
         <HowItWorks/>
         <Reviews/>
-        <Footer/>
     </section>
   )
 }
