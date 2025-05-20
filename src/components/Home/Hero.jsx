@@ -1,3 +1,4 @@
+import { Fade } from "react-awesome-reveal";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -23,8 +24,7 @@ const responsive = {
 function Hero() {
   return (
     <div className="mt-20 text-center">
-      <Carousel responsive={responsive} infinite={true}
-      autoPlay={true}>
+      <Carousel responsive={responsive} infinite={true} autoPlay={true}>
         {/* Slide 1 */}
         <div className="flex justify-center flex-col lg:flex-row">
           <img
@@ -33,8 +33,15 @@ function Hero() {
             alt=""
           />
           <div className="bg-base-300 p-10 gap-4 lg:w-1/2 flex justify-center items-center flex-col">
-            <h2 className="text-2xl font-bold">“Find Your Ride. Find Your Tribe.”</h2>
-            <p>Discover hobby groups near you — from biking to baking, there’s something for everyone.</p>
+            <Fade cascade damping={0.5} delay={300}>
+              <h2 className="text-5xl font-bold">
+                “Find Your Ride. Find Your Tribe.”
+              </h2>
+              <p>
+                Discover hobby groups near you — from biking to baking, there’s
+                something for everyone.
+              </p>
+            </Fade>
           </div>
         </div>
 
@@ -46,8 +53,14 @@ function Hero() {
             alt=""
           />
           <div className="bg-base-300 p-10 gap-4 lg:w-1/2 flex justify-center items-center flex-col">
-            <h2 className="text-2xl font-bold">“Explore. Connect. Enjoy.”</h2>
-            <p>Meet people who share your passions and build real-life connections.</p>
+            <Fade cascade damping={0.5} delay={300}>
+              {" "}
+              <h2 className="text-5xl font-bold">“Explore. Connect. Enjoy.”</h2>
+              <p>
+                Meet people who share your passions and build real-life
+                connections.
+              </p>
+            </Fade>
           </div>
         </div>
 
@@ -59,8 +72,14 @@ function Hero() {
             alt=""
           />
           <div className="bg-base-300 p-10 gap-4 lg:w-1/2 flex justify-center items-center flex-col">
-            <h2 className="text-2xl font-bold">“Kickstart Your Passion.”</h2>
-            <p>Join football lovers in your area — play casually, competitively, or just for fun.</p>
+            <Fade cascade damping={0.5} delay={300}>
+              {" "}
+              <h2 className="text-5xl font-bold">“Kickstart Your Passion.”</h2>
+              <p>
+                Join football lovers in your area — play casually,
+                competitively, or just for fun.
+              </p>
+            </Fade>
           </div>
         </div>
 
@@ -72,8 +91,13 @@ function Hero() {
             alt=""
           />
           <div className="bg-base-300 p-10 gap-4 lg:w-1/2 flex justify-center items-center flex-col">
-            <h2 className="text-2xl font-bold">“Your Local Hockey Hub Awaits.”</h2>
-            <p>Find practice buddies, join games, and stay active.</p>
+            <Fade cascade damping={0.5} delay={300}>
+              {" "}
+              <h2 className="text-5xl font-bold">
+                “Your Local Hockey Hub Awaits.”
+              </h2>
+              <p>Find practice buddies, join games, and stay active.</p>
+            </Fade>
           </div>
         </div>
       </Carousel>

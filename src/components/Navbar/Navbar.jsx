@@ -3,7 +3,7 @@ import Toggle from "../common/Toggle";
 
 function Navbar() {
   return (
-    <div className="navbar backdrop-blur-2xl z-10 shadow-sm mb-4 top-0 fixed ">
+    <div className="navbar backdrop-blur-2xl bg-gray-500/30 z-50 shadow-sm mb-4 top-0 fixed ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -25,7 +25,7 @@ function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm text-xl font-bold dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
           >
            <li>
             <a>Home</a>
