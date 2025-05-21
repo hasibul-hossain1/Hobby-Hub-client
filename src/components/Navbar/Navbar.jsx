@@ -34,16 +34,16 @@ function Navbar() {
             className="menu menu-sm text-xl font-bold dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a>Home</a>
+              <Link to='/'>Home</Link>
             </li>
             <li>
-              <a>All Groups</a>
+              <Link to='/all'>All Groups</Link>
             </li>
             <li>
-              <a>Create Group</a>
+              <Link to='/create'>Create Group</Link>
             </li>
             <li>
-              <a>My Groups</a>
+              <Link to='/mygroups'>My Groups</Link>
             </li>
             {user.userData ? (
               <li className="md:hidden">
@@ -69,13 +69,13 @@ function Navbar() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <a>All Groups</a>
+            <Link  to='/all'>All Groups</Link>
           </li>
           <li>
-            <a>Create Group</a>
+            <Link to='/create'>Create Group</Link>
           </li>
           <li>
-            <a>My Groups</a>
+            <Link to='/mygroups'>My Groups</Link>
           </li>
         </ul>
       </div>

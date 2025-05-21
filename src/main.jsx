@@ -7,6 +7,12 @@ import Home from "./components/Home/Home.jsx";
 import FirebaseContextProvider from "./components/contexts/FirebaseContext/FirebaseContextProvider.jsx";
 import LoginPage from "./components/Login/LoginPage.jsx";
 import Register from "./components/Login/Register.jsx";
+import AllGroups from "./components/AllGroup/AllGroup.jsx";
+import CreateGroup from "./components/CreateGroup/CreateGroup.jsx";
+import Loading from "./components/common/Loading.jsx";
+import MyGroups from "./components/MyGroups/MyGroups.jsx";
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,6 +20,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        loader:()=>fetch('http://localhost:2020/groups'),
         Component: Home,
       },
       {
@@ -23,6 +30,20 @@ const router = createBrowserRouter([
       {
         path:'/register',
         Component:Register
+      },
+      {
+        path:'/all',
+        loader:()=>fetch('http://localhost:2020/groups'),
+        HydrateFallback:Loading,
+        Component:AllGroups
+      },
+      {
+        path:'/create',
+        Component:CreateGroup
+      },
+      {
+        path:'/mygroups',
+        Component:MyGroups
       }
     ],
   },
