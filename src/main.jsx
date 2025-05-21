@@ -11,7 +11,7 @@ import AllGroups from "./components/AllGroup/AllGroup.jsx";
 import CreateGroup from "./components/CreateGroup/CreateGroup.jsx";
 import Loading from "./components/common/Loading.jsx";
 import MyGroups from "./components/MyGroups/MyGroups.jsx";
-
+import PrivateRoute from './components/common/PrivateRoute.jsx'
 
 const router = createBrowserRouter([
   {
@@ -20,31 +20,32 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader:()=>fetch('http://localhost:2020/groups'),
-        Component: Home,
+        loader: () => fetch("http://localhost:2020/groups"),
+        Component: Home
       },
       {
-        path:'login',
-        Component:LoginPage
+        path: "login",
+        Component: LoginPage,
       },
       {
-        path:'/register',
-        Component:Register
+        path: "/register",
+        Component: Register,
       },
       {
-        path:'/all',
-        loader:()=>fetch('http://localhost:2020/groups'),
-        HydrateFallback:Loading,
-        Component:AllGroups
+        path: "/all",
+        loader: () => fetch("http://localhost:2020/groups"),
+        hydrateFallbackElement: <Loading/>,
+        element: <PrivateRoute><AllGroups/></PrivateRoute>,
       },
       {
-        path:'/create',
-        Component:CreateGroup
+        path: "/create",
+        element:<PrivateRoute><CreateGroup/></PrivateRoute>,
       },
       {
-        path:'/mygroups',
-        Component:MyGroups
-      }
+        path: "/mygroups",
+        loader: () => fetch("http://localhost:2020/groups"),
+        element:<PrivateRoute><MyGroups/></PrivateRoute> ,
+      },
     ],
   },
 ]);

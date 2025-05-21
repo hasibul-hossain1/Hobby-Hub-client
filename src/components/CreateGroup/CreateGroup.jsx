@@ -1,7 +1,9 @@
 import React from "react";
-import PrivateRoot from "../common/PrivateRoot";
+import { useUserContext } from "../contexts/FirebaseContext/UserContext";
 
 const CreateGroup = () => {
+  const [user]=useUserContext()
+  console.log(user?.userData);
   const handleAddGroups = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -21,7 +23,6 @@ const CreateGroup = () => {
   };
 
   return (
-    <PrivateRoot>
       <div className="max-w-2xl mt-32 mx-auto p-6 bg-base-200 rounded-xl shadow-md">
         <h2 className="text-3xl font-bold mb-6 text-center">
           Create a New Hobby Group
@@ -128,7 +129,7 @@ const CreateGroup = () => {
               <input
                 type="email"
                 name="email"
-                value="john@example.com"
+                value={user?.userData?.email}
                 readOnly
                 className="input input-bordered w-full"
                 required
@@ -143,7 +144,6 @@ const CreateGroup = () => {
           </div>
         </form>
       </div>
-    </PrivateRoot>
   );
 };
 
