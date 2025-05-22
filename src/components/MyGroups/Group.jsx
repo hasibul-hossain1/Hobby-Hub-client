@@ -42,7 +42,7 @@ function Group({ item, index, setGroups }) {
 
         <span className="badge badge-ghost badge-sm">{item.location}</span>
       </td>
-      <td>{item.endDate}</td>
+      <td>{new Date(item.endDate).toLocaleDateString()}</td>
       <th className="space-x-2">
         <Link to={`/details/${item._id}`} data-tooltip-id="details" data-tooltip-content={'See More'} data-tooltip-place="top" className="btn bg-green-400 btn-xs"><TbListDetails /></Link>
         <Link to={`/update/${item._id}`} data-tooltip-id="details" data-tooltip-content={'Edit'} data-tooltip-place="top" className="btn bg-pink-400 btn-xs"><BiSolidEdit /></Link>
