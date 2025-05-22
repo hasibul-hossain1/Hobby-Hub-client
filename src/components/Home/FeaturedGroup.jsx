@@ -1,9 +1,11 @@
 import React from "react";
 import GroupCard from "../AllGroup/GroupCard";
 import { useLoaderData } from "react-router";
+import Loading from "../common/Loading";
 
 function FeaturedGroup() {
   const groups = useLoaderData();
+  if (!groups) return <Loading/>
 
   return (
     <section className="px-8 md:px-15 lg:px-32 xl:px-64 2xl:px-72 my-32">

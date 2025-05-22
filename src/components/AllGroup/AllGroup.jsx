@@ -7,7 +7,7 @@ const AllGroups = () => {
   console.log(location.state);
   const [search, setSearch] = useState("");
   const groups = useLoaderData();
-  console.log(groups);
+  if (!groups) return <Loading/>
 
   const filteredGroups = groups.filter((group) =>
     group.groupName.toLowerCase().includes(search.toLowerCase())

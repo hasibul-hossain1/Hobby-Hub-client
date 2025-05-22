@@ -1,10 +1,10 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router";
 import { useUserContext } from "../contexts/FirebaseContext/UserContext";
 import Group from "./Group";
-import { useEffect } from "react";
-import { HiH2 } from "react-icons/hi2";
+
+import Loading from "../common/Loading";
 
 function MyGroups() {
   const [user] = useUserContext();
@@ -16,10 +16,11 @@ function MyGroups() {
     );
     setGroups(filtered);
   }, [allGroups, user]);
-
+  if (!allGroups) return <Loading />;
   return (
-      <section className="overflow-x-auto mt-32 max-w-6xl mx-auto">
-        {groups.length?<table className="table">
+    <section className="overflow-x-auto mt-32 max-w-6xl mx-auto">
+      {groups.length ? (
+        <table className="table">
           {/* head */}
           <thead>
             <tr>
@@ -33,12 +34,24 @@ function MyGroups() {
             </tr>
           </thead>
           <tbody>
-            {[...groups].reverse().map((item,index) => (
-              <Group key={item._id} setGroups={setGroups} index={index} item={item} />
+            {[...groups].reverse().map((item, index) => (
+              <Group
+                key={item._id}
+                setGroups={setGroups}
+                index={index}
+                item={item}
+              />
             ))}
           </tbody>
-        </table>:<div className="flex justify-center items-center h-[60vh]"><h2 className="text-2xl font-bold">You have not created any group yet.</h2></div>}
-      </section>
+        </table>
+      ) : (
+        <div className="flex justify-center items-center h-[60vh]">
+          <h2 className="text-2xl font-bold">
+            You have not created any group yet.
+          </h2>
+        </div>
+      )}
+    </section>
   );
 }
 

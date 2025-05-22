@@ -8,7 +8,7 @@ const UpdateGroup = () => {
   const {id}=useParams()
   const targetGroup=useLoaderData()
   const navigate=useNavigate()
-
+if (!targetGroup) return <Loading/>
   const handleUpdateGroup = (e) => {
     e.preventDefault();
     const form = e.target;
