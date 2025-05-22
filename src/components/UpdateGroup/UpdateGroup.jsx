@@ -1,36 +1,34 @@
 import React from "react";
 import { useUserContext } from "../contexts/FirebaseContext/UserContext";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router";
+import { useLoaderData, useParams } from "react-router";
 
-const CreateGroup = () => {
+const UpdateGroup = () => {
   const [user]=useUserContext()
-  const navigate=useNavigate()
+  const {id}=useParams()
+  const targetGroup=useLoaderData()
+
   const handleAddGroups = (e) => {
     e.preventDefault();
     const form = e.target;
     const getData = new FormData(form);
     const formData = Object.fromEntries(getData);
 
-    fetch("http://localhost:2020/groups", {
-      method: "POST",
+    fetch(`http://localhost:2020/groups/${id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(formData),
     })
       .then((res) => res.json())
-      .then(() => {
-        navigate('/mygroups')
-        toast.success('Group Created Successfully')
-      })
+      .then((data) => console.log(data))
       .catch((err) => console.log(err));
   };
 
   return (
       <div className="max-w-2xl mt-32 mx-auto p-6 bg-base-200 rounded-xl shadow-md">
         <h2 className="text-3xl font-bold mb-6 text-center">
-          Create a New Hobby Group
+          Update Your Hobby Group
         </h2>
         <form onSubmit={handleAddGroups} className="space-y-4">
           <div>
@@ -38,6 +36,7 @@ const CreateGroup = () => {
             <input
               type="text"
               name="groupName"
+              defaultValue={targetGroup.groupName}
               className="input input-bordered w-full"
               required
             />
@@ -49,9 +48,9 @@ const CreateGroup = () => {
               name="hobbyCategory"
               className="select w-full"
               required
-              defaultValue=""
+              defaultValue={targetGroup.hobbyCategory}
             >
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Select a category
               </option>
               <option>Drawing & Painting</option>
@@ -74,6 +73,7 @@ const CreateGroup = () => {
               rows="4"
               className="textarea textarea-bordered w-full"
               required
+              defaultValue={targetGroup.description}
             />
           </div>
 
@@ -84,6 +84,7 @@ const CreateGroup = () => {
               name="location"
               className="input input-bordered w-full"
               required
+              defaultValue={targetGroup.location}
             />
           </div>
 
@@ -94,6 +95,7 @@ const CreateGroup = () => {
               name="maxMembers"
               className="input input-bordered w-full"
               required
+              defaultValue={targetGroup.maxMembers}
             />
           </div>
 
@@ -104,6 +106,7 @@ const CreateGroup = () => {
               name="endDate"
               className="input input-bordered w-full"
               required
+              defaultValue={targetGroup.endDate}
             />
           </div>
 
@@ -114,6 +117,7 @@ const CreateGroup = () => {
               name="image"
               className="input input-bordered w-full"
               required
+              defaultValue={targetGroup.image}
             />
           </div>
 
@@ -144,7 +148,7 @@ const CreateGroup = () => {
 
           <div className="text-center mt-6">
             <button type="submit" className="btn btn-primary">
-              Create Group
+              Update Group
             </button>
           </div>
         </form>
@@ -152,4 +156,4 @@ const CreateGroup = () => {
   );
 };
 
-export default CreateGroup;
+export default UpdateGroup;

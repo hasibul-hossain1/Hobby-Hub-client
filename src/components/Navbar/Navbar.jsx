@@ -1,10 +1,11 @@
 import React from "react";
 import Toggle from "../common/Toggle";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import { signOUtUser, useUserContext } from "../contexts/FirebaseContext/UserContext";
 
 function Navbar() {
   const [user] = useUserContext();
+  console.log(user.userData);
   const handleLogout=()=>{
     signOUtUser()
   }
@@ -34,16 +35,16 @@ function Navbar() {
             className="menu menu-sm text-xl font-bold dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link to='/'>Home</Link>
+              <NavLink className={({isActive})=>isActive? 'text-blue-400':''} to='/'>Home</NavLink>
             </li>
             <li>
-              <Link to='/all'>All Groups</Link>
+              <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to='/all'>All Groups</NavLink>
             </li>
             <li>
-              <Link to='/create'>Create Group</Link>
+              <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to='/create'>Create Group</NavLink>
             </li>
             <li>
-              <Link to='/mygroups'>My Groups</Link>
+              <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to='/mygroups'>My Groups</NavLink>
             </li>
             {user.userData ? (
               <li className="md:hidden">
@@ -52,10 +53,10 @@ function Navbar() {
             ) : (
               <>
                 <li className="md:hidden">
-                  <Link to="/login">Login</Link>
+                  <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to="/login">Login</NavLink>
                 </li>
                 <li className="md:hidden">
-                  <Link to="/register">Register</Link>
+                  <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to="/register">Register</NavLink>
                 </li>
               </>
             )}
@@ -66,16 +67,16 @@ function Navbar() {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to="/">Home</Link>
+            <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to="/">Home</NavLink>
           </li>
           <li>
-            <Link  to='/all'>All Groups</Link>
+            <NavLink className={({isActive})=>isActive ? 'text-blue-400':''}  to='/all'>All Groups</NavLink>
           </li>
           <li>
-            <Link to='/create'>Create Group</Link>
+            <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to='/create'>Create Group</NavLink>
           </li>
           <li>
-            <Link to='/mygroups'>My Groups</Link>
+            <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to='/mygroups'>My Groups</NavLink>
           </li>
         </ul>
       </div>
@@ -84,7 +85,7 @@ function Navbar() {
           <>
             <div className="avatar hidden md:flex">
               <div className="w-12 rounded-full">
-                <img src="https://img.daisyui.com/images/profile/demo/yellingcat@192.webp" />
+                <img src={user.userData.photoURL.startsWith('https://')?user.userData.photoURL:'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp'} />
               </div>
             </div>
             <button onClick={handleLogout} className="btn btn-primary hidden md:flex">Logout</button>

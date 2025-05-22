@@ -4,6 +4,7 @@ import {
   updateProfileUser,
   useUserContext,
 } from "../contexts/FirebaseContext/UserContext";
+import toast from "react-hot-toast";
 
 function SignUpPage() {
   const [user, setUser] = useUserContext();
@@ -20,6 +21,7 @@ function SignUpPage() {
     if (passwordPattern.test(password)) {
       createUser(email, password)
         .then(() => {
+          toast.success('Register Successful')
           updateProfileUser({ displayName, photoURL });
           setUser((prev) => ({
             ...prev,

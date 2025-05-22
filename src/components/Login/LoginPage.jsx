@@ -1,55 +1,108 @@
 import { useState } from "react";
-import { createUserWithGoogle, signInUser, useUserContext } from "../contexts/FirebaseContext/UserContext";
-import { Link, Navigate, useLocation } from "react-router";
+import {
+  createUserWithGoogle,
+  signInUser,
+  useUserContext,
+} from "../contexts/FirebaseContext/UserContext";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
+import toast from "react-hot-toast";
 
 function LoginPage() {
-  const [user,setUser]=useUserContext()
-  const [email,setEmail]=useState('')
-  const location=useLocation()
+  const [user, setUser] = useUserContext();
+  const [email, setEmail] = useState("");
+  const location = useLocation();
+  const navigate = useNavigate();
   const handleGoogleLogin = () => {
     createUserWithGoogle()
-      .catch((err) => setUser(prev=>{
-        return {...prev,userIsError:true,userErrorMessage:err?.message||'Unexpected Error'}
-      }));
+    .then(() => {
+        toast.success("Logged Successfully");
+        navigate(location.state ? location.state : "/");
+      })
+      .catch((err) =>
+        setUser((prev) => {
+          return {
+            ...prev,
+            userIsError: true,
+            userErrorMessage: err?.message || "Unexpected Error",
+          };
+        })
+      );
   };
   if (user.userData) {
-    return <Navigate to={location.state||'/'}/>
+    return <Navigate to={location.state || "/"} />;
   }
-  const handleSignin=(e)=>{
-    e.preventDefault()
-    const email=e.target.email.value
-    const password=e.target.password.value
-    signInUser(email,password).then(()=>{
-      setUser(prev=>{
-        return {...prev,userIsLoading:false,userIsError:false}
+  const handleSignin = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    signInUser(email, password)
+      .then(() => {
+        toast.success("Logged Successfully");
+        navigate(location.state ? location.state : "/");
+        setUser((prev) => {
+          return { ...prev, userIsLoading: false, userIsError: false };
+        });
       })
-    }).catch(err=>{
-      setUser(prev=>{
-        return {...prev,userIsLoading:false,userIsError:true,userErrorMessage:err?.message}
-      })
-    })
-  }
- 
+      .catch((err) => {
+        setUser((prev) => {
+          return {
+            ...prev,
+            userIsLoading: false,
+            userIsError: true,
+            userErrorMessage: err?.message,
+          };
+        });
+      });
+  };
+
   return (
     <section className="flex bg-base-200 mt-32 justify-center flex-col items-center h-[80vh]">
       <form onSubmit={handleSignin} className="fieldset rounded-box w-xs p-4">
         <legend className="fieldset-legend text-4xl">Login</legend>
 
         <label className="label text-2xl">Email</label>
-        <input value={email} onChange={(e)=>setEmail(e.target.value)} type="email" name="email" className="input" placeholder="Email" />
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          name="email"
+          className="input"
+          placeholder="Email"
+        />
 
         <label className="label text-2xl">Password</label>
-        <input type="password" name="password" className="input" placeholder="Password" />
-        <Link to='/forgot' state={email}  className="hover:underline text-left text-sm">Forget Password?</Link>
-        <button type="submit" className="btn btn-neutral mt-4">Login</button>
+        <input
+          type="password"
+          name="password"
+          className="input"
+          placeholder="Password"
+        />
+        <Link
+          to="/forgot"
+          state={email}
+          className="hover:underline text-left text-sm"
+        >
+          Forget Password?
+        </Link>
+        <button type="submit" className="btn btn-neutral mt-4">
+          Login
+        </button>
         <h4 className="text-sm">
           Don't have an account?{" "}
-          <Link state={location?.state} to="/register" className="hover:text-blue-500">
+          <Link
+            state={location?.state}
+            to="/register"
+            className="hover:text-blue-500"
+          >
             Register
           </Link>
         </h4>
       </form>
-        {user.userIsError&&<p className="text-center text-red-500 text-md font-bold">{user?.userErrorMessage || ''}</p>}
+      {user.userIsError && (
+        <p className="text-center text-red-500 text-md font-bold">
+          {user?.userErrorMessage || ""}
+        </p>
+      )}
       <div className="mt-20 flex gap-8 flex-col lg:flex-row">
         <button
           onClick={handleGoogleLogin}
@@ -85,7 +138,7 @@ function LoginPage() {
           Login with Google
         </button>
 
-        <button className="btn bg-black text-white border-black">
+        <button onClick={()=>toast.success('ok')} className="btn bg-black text-white border-black">
           <svg
             aria-label="GitHub logo"
             width="16"

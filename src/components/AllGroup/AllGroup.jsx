@@ -28,7 +28,7 @@ const AllGroups = () => {
         />
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredGroups.map((group) => (
+          {[...filteredGroups].reverse().map((group) => (
             <GroupCard key={group._id} group={group} />
           ))}
         </div>

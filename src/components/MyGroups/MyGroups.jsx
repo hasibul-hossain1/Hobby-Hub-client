@@ -10,10 +10,10 @@ function MyGroups() {
   const [groups, setGroups] = useState([]);
   const allGroups = useLoaderData();
   useEffect(() => {
-    const filterd = allGroups.filter(
+    const filtered = allGroups.filter(
       (item) => item.email === user.userData.email
     );
-    setGroups(filterd);
+    setGroups(filtered);
   }, [allGroups, user]);
 
   return (
@@ -25,15 +25,15 @@ function MyGroups() {
               <th>
                 <label>Serial</label>
               </th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>Photo</th>
+              <th>Name & Location</th>
+              <th>Expired Date</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {groups.map((item) => (
-              <Group item={item} />
+            {[...groups].reverse().map((item,index) => (
+              <Group key={item._id} setGroups={setGroups} index={index} item={item} />
             ))}
           </tbody>
         </table>

@@ -5,6 +5,7 @@ import Footer from './components/common/Footer'
 import { useUserContext } from './components/contexts/FirebaseContext/UserContext'
 import Loading from './components/common/Loading'
 import { useEffect } from 'react'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
    const [user]=useUserContext()
@@ -16,6 +17,7 @@ function App() {
       <Navbar/>
       {user.userIsLoading?<Loading/>:<Outlet/>}
       <Footer/>
+      <Toaster position="top-center" reverseOrder={false} />
     </main>
   )
 }

@@ -1,37 +1,49 @@
 import React from "react";
+import { BiSolidEdit } from "react-icons/bi";
+import { MdDelete } from "react-icons/md";
+import { Link } from "react-router";
 
-function Group() {
+function Group({ item, index, setGroups }) {
+  const handleDelete=()=>{
+    fetch(`http://localhost:2020/groups/${item._id}`,{
+      method:"DELETE"
+    })
+    setGroups(prev=>{
+      const filtered=prev.filter((ele)=>ele._id!==item._id)
+      return filtered
+    })
+  }
+  console.log(item);
   return (
     <tr>
       <th>
-        <label>1</label>
+        <label>{index + 1}</label>
       </th>
       <td>
         <div className="flex items-center gap-3">
           <div className="avatar">
             <div className="mask mask-squircle h-12 w-12">
               <img
-                src="https://img.daisyui.com/images/profile/demo/2@94.webp"
+                src={
+                  item.image.startsWith("https://")
+                    ? item.image
+                    : "/default.jpeg"
+                }
                 alt="Avatar Tailwind CSS Component"
               />
             </div>
           </div>
-          <div>
-            <div className="font-bold">Hart Hagerty</div>
-            <div className="text-sm opacity-50">United States</div>
-          </div>
         </div>
       </td>
       <td>
-        Zemlak, Daniel and Leannon
-        <br />
-        <span className="badge badge-ghost badge-sm">
-          Desktop Support Technician
-        </span>
+        <p className="text-xl font-medium">{item.groupName}</p>
+
+        <span className="badge badge-ghost badge-sm">{item.location}</span>
       </td>
-      <td>Purple</td>
-      <th>
-        <button className="btn btn-ghost btn-xs">details</button>
+      <td>{item.endDate}</td>
+      <th className="space-x-2">
+        <Link to={`/update/${item._id}`} className="btn bg-pink-400 btn-xs"><BiSolidEdit /></Link>
+        <button onClick={handleDelete} className="btn bg-red-500 btn-xs"><MdDelete /></button>
       </th>
     </tr>
   );
