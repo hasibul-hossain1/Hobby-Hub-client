@@ -24,7 +24,7 @@ function Footer() {
           <a href="www.linkedin.com/in/shant0d" target="_blank">
             <FaLinkedin size={25}/>
           </a>
-          <a>
+          <a href="https://github.com/ShantoD0" target="_blank">
             <FaGithub size={25} />
           </a>
         </div>

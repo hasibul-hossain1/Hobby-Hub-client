@@ -24,7 +24,9 @@ const CreateGroup = () => {
         navigate('/mygroups')
         toast.success('Group Created Successfully')
       })
-      .catch((err) => console.log(err));
+      .catch(() =>{
+        toast.error('Group creating failed')
+      });
   };
 
   return (

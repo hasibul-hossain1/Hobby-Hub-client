@@ -14,7 +14,7 @@ function LoginPage() {
   const navigate = useNavigate();
   const handleGoogleLogin = () => {
     createUserWithGoogle()
-    .then(() => {
+      .then(() => {
         toast.success("Logged Successfully");
         navigate(location.state ? location.state : "/");
       })
@@ -77,13 +77,9 @@ function LoginPage() {
           className="input"
           placeholder="Password"
         />
-        <Link
-          to="/forgot"
-          state={email}
-          className="hover:underline text-left text-sm"
-        >
+        <button type="button" className="hover:underline text-left text-sm">
           Forget Password?
-        </Link>
+        </button>
         <button type="submit" className="btn btn-neutral mt-4">
           Login
         </button>
@@ -138,7 +134,10 @@ function LoginPage() {
           Login with Google
         </button>
 
-        <button onClick={()=>toast.success('ok')} className="btn bg-black text-white border-black">
+        <button
+          onClick={() => toast.success("ok")}
+          className="btn bg-black text-white border-black"
+        >
           <svg
             aria-label="GitHub logo"
             width="16"
