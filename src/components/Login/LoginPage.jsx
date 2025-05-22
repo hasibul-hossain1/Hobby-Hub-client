@@ -135,7 +135,7 @@ function LoginPage() {
         </button>
 
         <button
-          onClick={() => toast.success("ok")}
+          onClick={() => toast.success("try google please")}
           className="btn bg-black text-white border-black"
         >
           <svg

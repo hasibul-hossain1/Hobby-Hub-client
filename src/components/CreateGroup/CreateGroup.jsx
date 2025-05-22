@@ -53,7 +53,7 @@ const CreateGroup = () => {
               required
               defaultValue=""
             >
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Select a category
               </option>
               <option>Drawing & Painting</option>

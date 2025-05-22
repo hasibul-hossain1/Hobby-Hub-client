@@ -5,6 +5,7 @@ import { useUserContext } from "../contexts/FirebaseContext/UserContext";
 import Group from "./Group";
 
 import Loading from "../common/Loading";
+import { Tooltip } from "react-tooltip";
 
 function MyGroups() {
   const [user] = useUserContext();
@@ -19,6 +20,7 @@ function MyGroups() {
   if (!allGroups) return <Loading />;
   return (
     <section className="overflow-x-auto mt-32 max-w-6xl mx-auto">
+       <Tooltip id="details" />
       {groups.length ? (
         <table className="table">
           {/* head */}
