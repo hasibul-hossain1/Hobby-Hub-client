@@ -15,7 +15,9 @@ function App() {
   return (
     <main>
       <Navbar/>
+      <div className='min-h-[50vh]'>
       {user.userIsLoading?<Loading/>:<Outlet/>}
+      </div>
       <Footer/>
       <Toaster position="top-center" reverseOrder={false} />
     </main>

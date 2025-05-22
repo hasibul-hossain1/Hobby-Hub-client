@@ -37,7 +37,7 @@ function MyGroups() {
               <Group key={item._id} setGroups={setGroups} index={index} item={item} />
             ))}
           </tbody>
-        </table>:<h2 className="text-2xl font-bold text-center">You have not created any group yet.</h2>}
+        </table>:<div className="flex justify-center items-center h-[60vh]"><h2 className="text-2xl font-bold">You have not created any group yet.</h2></div>}
       </section>
   );
 }
