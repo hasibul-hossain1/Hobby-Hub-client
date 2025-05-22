@@ -124,7 +124,7 @@ const CreateGroup = () => {
               <label className="block mb-2 font-medium">Your Name</label>
               <input
                 type="text"
-                value="John Doe"
+                value={user.userData.displayName}
                 name="name"
                 readOnly
                 className="input input-bordered w-full"

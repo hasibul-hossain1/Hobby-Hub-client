@@ -13,7 +13,6 @@ function Group({ item, index, setGroups }) {
       return filtered;
     });
   };
-  console.log(item);
   return (
     <>
       <tr>
