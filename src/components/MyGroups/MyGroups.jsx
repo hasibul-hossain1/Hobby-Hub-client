@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router";
 import { useUserContext } from "../contexts/FirebaseContext/UserContext";
 import Group from "./Group";
 import { useEffect } from "react";
+import { HiH2 } from "react-icons/hi2";
 
 function MyGroups() {
   const [user] = useUserContext();
@@ -18,7 +19,7 @@ function MyGroups() {
 
   return (
       <section className="overflow-x-auto mt-32 max-w-6xl mx-auto">
-        <table className="table">
+        {groups.length?<table className="table">
           {/* head */}
           <thead>
             <tr>
@@ -36,7 +37,7 @@ function MyGroups() {
               <Group key={item._id} setGroups={setGroups} index={index} item={item} />
             ))}
           </tbody>
-        </table>
+        </table>:<h2 className="text-2xl font-bold text-center">You have not created any group yet.</h2>}
       </section>
   );
 }

@@ -22,6 +22,7 @@ function SignUpPage() {
       createUser(email, password)
         .then(() => {
           toast.success('Register Successful')
+          Navigate(location.state?location.state:'/')
           updateProfileUser({ displayName, photoURL });
           setUser((prev) => ({
             ...prev,

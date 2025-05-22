@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 function GroupCard({ group }) {
   return (
@@ -14,7 +15,7 @@ function GroupCard({ group }) {
         Members: {group.maxMembers}
       </p>
       <p className="text-sm text-base-content/70">Location: {group.location}</p>
-      <button className="btn btn-primary mt-4 w-full">View Details</button>
+      <Link to={`/details/${group._id}`} className="btn btn-primary mt-4 w-full">See More</Link>
     </div>
   );
 }

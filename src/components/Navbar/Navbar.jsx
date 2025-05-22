@@ -2,12 +2,17 @@ import React from "react";
 import Toggle from "../common/Toggle";
 import { Link, NavLink } from "react-router";
 import { signOUtUser, useUserContext } from "../contexts/FirebaseContext/UserContext";
+import toast from "react-hot-toast";
+import { Tooltip } from "react-tooltip";
 
 function Navbar() {
   const [user] = useUserContext();
   console.log(user.userData);
   const handleLogout=()=>{
-    signOUtUser()
+    signOUtUser().then(() => {
+      toast.success('Logout Successful')
+    }
+    )
   }
   return (
     <div className="navbar backdrop-blur-2xl bg-gray-500/30 z-50 shadow-sm mb-4 top-0 fixed ">
@@ -85,7 +90,7 @@ function Navbar() {
           <>
             <div className="avatar hidden md:flex">
               <div className="w-12 rounded-full">
-                <img src={user.userData.photoURL.startsWith('https://')?user.userData.photoURL:'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp'} />
+                <img data-tooltip-id="name" data-tooltip-content={user.userData?.displayName} data-tooltip-place="left" src={user.userData.photoURL?.startsWith('https://')?user.userData.photoURL:'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp'} />
               </div>
             </div>
             <button onClick={handleLogout} className="btn btn-primary hidden md:flex">Logout</button>
@@ -105,6 +110,7 @@ function Navbar() {
         )}
         <Toggle />
       </div>
+      <Tooltip id="name"/>
     </div>
   );
 }

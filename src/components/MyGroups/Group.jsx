@@ -1,7 +1,9 @@
 import React from "react";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
+import { TbListDetails } from "react-icons/tb";
 import { Link } from "react-router";
+import { Tooltip } from "react-tooltip";
 
 function Group({ item, index, setGroups }) {
   const handleDelete=()=>{
@@ -42,9 +44,11 @@ function Group({ item, index, setGroups }) {
       </td>
       <td>{item.endDate}</td>
       <th className="space-x-2">
-        <Link to={`/update/${item._id}`} className="btn bg-pink-400 btn-xs"><BiSolidEdit /></Link>
-        <button onClick={handleDelete} className="btn bg-red-500 btn-xs"><MdDelete /></button>
+        <Link to={`/details/${item._id}`} data-tooltip-id="details" data-tooltip-content={'See More'} data-tooltip-place="top" className="btn bg-green-400 btn-xs"><TbListDetails /></Link>
+        <Link to={`/update/${item._id}`} data-tooltip-id="details" data-tooltip-content={'Edit'} data-tooltip-place="top" className="btn bg-pink-400 btn-xs"><BiSolidEdit /></Link>
+        <button onClick={handleDelete} data-tooltip-id="details" data-tooltip-content={'Delete'} data-tooltip-place="top" className="btn bg-red-500 btn-xs"><MdDelete /></button>
       </th>
+      <Tooltip id="details"/>
     </tr>
   );
 }

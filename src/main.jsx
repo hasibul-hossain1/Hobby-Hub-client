@@ -13,6 +13,7 @@ import Loading from "./components/common/Loading.jsx";
 import MyGroups from "./components/MyGroups/MyGroups.jsx";
 import PrivateRoute from './components/common/PrivateRoute.jsx'
 import UpdateGroup from "./components/UpdateGroup/UpdateGroup.jsx";
+import GroupDetails from "./components/GroupDetails/GroupDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,12 @@ const router = createBrowserRouter([
         loader:({params})=>fetch(`http://localhost:2020/groups/${params.id}`),
         hydrateFallbackElement:<Loading/>,
         Component:UpdateGroup
+      },
+      {
+        path:'/details/:id',
+        loader:({params}) => fetch(`http://localhost:2020/groups/${params.id}`),
+        Component:GroupDetails,
+        hydrateFallbackElement:<Loading/>
       }
     ],
   },

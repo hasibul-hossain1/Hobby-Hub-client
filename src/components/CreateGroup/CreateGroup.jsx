@@ -110,7 +110,7 @@ const CreateGroup = () => {
           <div>
             <label className="block mb-2 font-medium">Image URL</label>
             <input
-              type="url"
+              type="text"
               name="image"
               className="input input-bordered w-full"
               required

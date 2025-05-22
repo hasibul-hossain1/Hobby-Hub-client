@@ -1,13 +1,15 @@
 import React from "react";
 import { useUserContext } from "../contexts/FirebaseContext/UserContext";
-import { useLoaderData, useParams } from "react-router";
+import { useLoaderData, useNavigate, useParams } from "react-router";
+import toast from "react-hot-toast";
 
 const UpdateGroup = () => {
   const [user]=useUserContext()
   const {id}=useParams()
   const targetGroup=useLoaderData()
+  const navigate=useNavigate()
 
-  const handleAddGroups = (e) => {
+  const handleUpdateGroup = (e) => {
     e.preventDefault();
     const form = e.target;
     const getData = new FormData(form);
@@ -21,8 +23,13 @@ const UpdateGroup = () => {
       body: JSON.stringify(formData),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+      .then(() =>{
+        navigate('/mygroups')
+        toast.success('Group Updated Successfully')
+      })
+      .catch(() =>{
+        toast.error('Group Update Failed')
+      });
   };
 
   return (
@@ -30,7 +37,7 @@ const UpdateGroup = () => {
         <h2 className="text-3xl font-bold mb-6 text-center">
           Update Your Hobby Group
         </h2>
-        <form onSubmit={handleAddGroups} className="space-y-4">
+        <form onSubmit={handleUpdateGroup} className="space-y-4">
           <div>
             <label className="block mb-2 font-medium">Group Name</label>
             <input
