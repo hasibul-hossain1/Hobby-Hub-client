@@ -1,10 +1,8 @@
 import { useState } from "react";
 import GroupCard from "./GroupCard";
-import { useLoaderData, useLocation } from "react-router";
+import { useLoaderData } from "react-router";
 
 const AllGroups = () => {
-  const location=useLocation()
-  console.log(location.state);
   const [search, setSearch] = useState("");
   const groups = useLoaderData();
   if (!groups) return <Loading/>

@@ -7,12 +7,13 @@ import { Tooltip } from "react-tooltip";
 
 function Navbar() {
   const [user] = useUserContext();
-  console.log(user.userData);
   const handleLogout=()=>{
     signOUtUser().then(() => {
       toast.success('Logout Successful')
     }
-    )
+    ).catch(()=>{
+      toast.error('Logout Failed')
+    })
   }
   return (
     <div className="navbar backdrop-blur-2xl bg-gray-500/30 z-50 shadow-sm mb-4 top-0 fixed ">

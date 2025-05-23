@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router";
 
 function GroupCard({ group }) {
-  console.log(group);
   return (
     <div className="bg-base-200 p-6 rounded-box shadow-md hover:shadow-xl transition-all">
       <div className="flex justify-center items-center mb-5">

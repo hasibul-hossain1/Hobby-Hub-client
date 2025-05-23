@@ -14,6 +14,7 @@ import MyGroups from "./components/MyGroups/MyGroups.jsx";
 import PrivateRoute from './components/common/PrivateRoute.jsx'
 import UpdateGroup from "./components/UpdateGroup/UpdateGroup.jsx";
 import GroupDetails from "./components/GroupDetails/GroupDetails.jsx";
+import NotFound from "./components/NotFoundPage/NotFound.jsx";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
         path: "/all",
         loader: () => fetch("http://localhost:2020/groups"),
         hydrateFallbackElement: <Loading/>,
-        element: <PrivateRoute><AllGroups/></PrivateRoute>,
+        Component:AllGroups
       },
       {
         path: "/create",
@@ -61,9 +62,12 @@ const router = createBrowserRouter([
         loader:({params}) => fetch(`http://localhost:2020/groups/${params.id}`),
         Component:GroupDetails,
         hydrateFallbackElement:<Loading/>
-      }
+      },
     ],
-  },
+  },{
+    path:'/*',
+    Component:NotFound
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(

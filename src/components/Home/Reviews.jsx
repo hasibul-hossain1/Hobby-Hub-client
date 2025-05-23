@@ -47,7 +47,7 @@ export default function Reviews() {
 
         {/* Add Review Form */}
         <form
-          
+          onSubmit={(e)=>e.preventDefault()}
           className="bg-base-100 p-6 rounded-xl shadow-md space-y-4 max-w-3xl mx-auto mb-8"
         >
           <h3 className="text-xl font-semibold mb-2">Leave Your Review</h3>

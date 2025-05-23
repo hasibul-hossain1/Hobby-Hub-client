@@ -1,24 +1,25 @@
 import { useLoaderData } from "react-router";
 import Loading from "../common/Loading";
-import PrivateRoute from "../common/PrivateRoute"
+import PrivateRoute from "../common/PrivateRoute";
 import { useRef } from "react";
 import toast from "react-hot-toast";
 
 function GroupDetails() {
   const group = useLoaderData();
-  const joinRef=useRef(null)
+  const joinRef = useRef(null);
   if (!group) return <Loading />;
-  console.log(group);
   const isJoinDisabled = () => {
     if (!group?.endDate) return false;
     const now = new Date();
     const deadline = new Date(group.endDate);
+    console.log(now,deadline);
     return deadline < now;
   };
-const handleJoin=()=>{
-  toast.success('Joined Successfully')
-  joinRef.current.disabled=true
-}
+  const isDisabled=isJoinDisabled()
+  const handleJoin = () => {
+    toast.success("Joined Successfully");
+    joinRef.current.disabled = true;
+  };
   return (
     <PrivateRoute>
       <div className="max-w-4xl mt-32 mx-auto p-6 bg-base-100 shadow-xl rounded-lg space-y-4">
@@ -50,16 +51,17 @@ const handleJoin=()=>{
           <strong>Created by:</strong> {group.name}
         </p>
 
-        <button
-          disabled={isJoinDisabled()}
-          onClick={handleJoin}
-          ref={joinRef}
-          className={`btn btn-primary ${
-            isJoinDisabled() ? "btn-disabled" : ""
-          }`}
-        >
-          {isJoinDisabled() ? "Joining Closed" : "Join"}
-        </button>
+        {isDisabled ? (
+          <p className="text-xl text-red-500">Sorry the deadline is over you can not join the group</p>
+        ) : (
+          <button
+            onClick={handleJoin}
+            ref={joinRef}
+            className="btn btn-primary"
+          >
+            Join
+          </button>
+        )}
       </div>
     </PrivateRoute>
   );
