@@ -12,7 +12,7 @@ const CreateGroup = () => {
     const getData = new FormData(form);
     const formData = Object.fromEntries(getData);
 
-    fetch("http://localhost:2020/groups", {
+    fetch("https://backend-opal-delta-19.vercel.app/groups", {
       method: "POST",
       headers: {
         "content-type": "application/json",

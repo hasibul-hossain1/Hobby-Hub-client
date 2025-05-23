@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { TbListDetails } from "react-icons/tb";
@@ -5,13 +6,16 @@ import { Link } from "react-router";
 
 function Group({ item, index, setGroups }) {
   const handleDelete = () => {
-    fetch(`http://localhost:2020/groups/${item._id}`, {
+    fetch(`https://backend-opal-delta-19.vercel.app/groups/${item._id}`, {
       method: "DELETE",
-    });
-    setGroups((prev) => {
+    }).then(res=>res.json()).then(() => {
+      toast.success('Successfully Deleted')
+      setGroups((prev) => {
       const filtered = prev.filter((ele) => ele._id !== item._id);
       return filtered;
-    });
+    })
+    })
+    ;
   };
   return (
     <>

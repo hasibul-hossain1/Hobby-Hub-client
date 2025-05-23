@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch("http://localhost:2020/groups"),
+        loader: () => fetch("https://backend-opal-delta-19.vercel.app/groups"),
         hydrateFallbackElement:<Loading/>,
         Component: Home
       },
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/all",
-        loader: () => fetch("http://localhost:2020/groups"),
+        loader: () => fetch("https://backend-opal-delta-19.vercel.app/groups"),
         hydrateFallbackElement: <Loading/>,
         Component:AllGroups
       },
@@ -47,19 +47,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/mygroups",
-        loader: () => fetch("http://localhost:2020/groups"),
+        loader: () => fetch("https://backend-opal-delta-19.vercel.app/groups"),
         hydrateFallbackElement:<Loading/>,
         element:<PrivateRoute><MyGroups/></PrivateRoute> ,
       },
       {
         path:'/update/:id',
-        loader:({params})=>fetch(`http://localhost:2020/groups/${params.id}`),
+        loader:({params})=>fetch(`https://backend-opal-delta-19.vercel.app/groups/${params.id}`),
         hydrateFallbackElement:<Loading/>,
         Component:UpdateGroup
       },
       {
         path:'/details/:id',
-        loader:({params}) => fetch(`http://localhost:2020/groups/${params.id}`),
+        loader:({params}) => fetch(`https://backend-opal-delta-19.vercel.app/groups/${params.id}`),
         Component:GroupDetails,
         hydrateFallbackElement:<Loading/>
       },

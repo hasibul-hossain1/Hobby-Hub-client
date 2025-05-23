@@ -2,6 +2,7 @@ import React from "react";
 import { useUserContext } from "../contexts/FirebaseContext/UserContext";
 import { useLoaderData, useNavigate, useParams } from "react-router";
 import toast from "react-hot-toast";
+import Loading from "../common/Loading";
 
 const UpdateGroup = () => {
   const [user]=useUserContext()
@@ -15,7 +16,7 @@ if (!targetGroup) return <Loading/>
     const getData = new FormData(form);
     const formData = Object.fromEntries(getData);
 
-    fetch(`http://localhost:2020/groups/${id}`, {
+    fetch(`https://backend-opal-delta-19.vercel.app/groups/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -120,7 +121,7 @@ if (!targetGroup) return <Loading/>
           <div>
             <label className="block mb-2 font-medium">Image URL</label>
             <input
-              type="url"
+              type="text"
               name="image"
               className="input input-bordered w-full"
               required
