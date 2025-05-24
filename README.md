@@ -8,7 +8,7 @@
 
 ## 🔗 Live Demo
 
-[👉 Visit HobbyHub (Live Site)](https://your-deployed-url.com)
+[👉 Visit HobbyHub (Live Site)](https://hobbyhub-a10.netlify.app/)
 
 clint side repo: https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-ShantoD0
 

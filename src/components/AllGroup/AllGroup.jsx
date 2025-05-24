@@ -5,6 +5,7 @@ import { useLoaderData } from "react-router";
 const AllGroups = () => {
   const [search, setSearch] = useState("");
   const groups = useLoaderData();
+  console.log(groups);
   if (!groups) return <Loading/>
 
   const filteredGroups = groups.filter((group) =>

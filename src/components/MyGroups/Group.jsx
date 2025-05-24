@@ -1,22 +1,43 @@
-import toast from "react-hot-toast";
 import { BiSolidEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { TbListDetails } from "react-icons/tb";
 import { Link } from "react-router";
+import Swal from "sweetalert2";
 
 function Group({ item, index, setGroups }) {
   const handleDelete = () => {
-    fetch(`https://backend-opal-delta-19.vercel.app/groups/${item._id}`, {
-      method: "DELETE",
-    }).then(res=>res.json()).then(() => {
-      toast.success('Successfully Deleted')
-      setGroups((prev) => {
-      const filtered = prev.filter((ele) => ele._id !== item._id);
-      return filtered;
-    })
-    })
-    ;
-  };
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Perform the DELETE request
+      fetch(`https://backend-opal-delta-19.vercel.app/groups/${item._id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then(() => {
+          // Update local state
+          setGroups((prev) => prev.filter((ele) => ele._id !== item._id));
+
+          Swal.fire({
+            title: "Deleted!",
+            text: "The group has been deleted.",
+            icon: "success"
+          });
+        })
+        .catch((error) => {
+          console.error("Error deleting item:", error);
+          Swal.fire("Error", "Something went wrong while deleting.", "error");
+        });
+    }
+  });
+};
   return (
     <>
       <tr>

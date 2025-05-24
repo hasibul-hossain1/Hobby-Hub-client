@@ -1,20 +1,24 @@
 import React from "react";
 import Toggle from "../common/Toggle";
 import { Link, NavLink } from "react-router";
-import { signOUtUser, useUserContext } from "../contexts/FirebaseContext/UserContext";
+import {
+  signOUtUser,
+  useUserContext,
+} from "../contexts/FirebaseContext/UserContext";
 import toast from "react-hot-toast";
 import { Tooltip } from "react-tooltip";
 
 function Navbar() {
   const [user] = useUserContext();
-  const handleLogout=()=>{
-    signOUtUser().then(() => {
-      toast.success('Logout Successful')
-    }
-    ).catch(()=>{
-      toast.error('Logout Failed')
-    })
-  }
+  const handleLogout = () => {
+    signOUtUser()
+      .then(() => {
+        toast.success("Logout Successful");
+      })
+      .catch(() => {
+        toast.error("Logout Failed");
+      });
+  };
   return (
     <div className="navbar backdrop-blur-2xl bg-gray-500/30 z-50 shadow-sm mb-4 top-0 fixed ">
       <div className="navbar-start">
@@ -41,28 +45,64 @@ function Navbar() {
             className="menu menu-sm text-xl font-bold dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <NavLink className={({isActive})=>isActive? 'text-blue-400':''} to='/'>Home</NavLink>
+              <NavLink
+                className={({ isActive }) => (isActive ? "text-blue-400" : "")}
+                to="/"
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to='/all'>All Groups</NavLink>
+              <NavLink
+                className={({ isActive }) => (isActive ? "text-blue-400" : "")}
+                to="/all"
+              >
+                All Groups
+              </NavLink>
             </li>
             <li>
-              <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to='/create'>Create Group</NavLink>
+              <NavLink
+                className={({ isActive }) => (isActive ? "text-blue-400" : "")}
+                to="/create"
+              >
+                Create Group
+              </NavLink>
             </li>
             <li>
-              <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to='/mygroups'>My Groups</NavLink>
+              <NavLink
+                className={({ isActive }) => (isActive ? "text-blue-400" : "")}
+                to="/mygroups"
+              >
+                My Groups
+              </NavLink>
             </li>
             {user.userData ? (
               <li className="md:hidden">
-                <button onClick={handleLogout} className="md:hidden">Logout</button>
+                <button onClick={handleLogout} className="md:hidden">
+                  Logout
+                </button>
               </li>
             ) : (
               <>
                 <li className="md:hidden">
-                  <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to="/login">Login</NavLink>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "text-blue-400" : ""
+                    }
+                    to="/login"
+                  >
+                    Login
+                  </NavLink>
                 </li>
                 <li className="md:hidden">
-                  <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to="/register">Register</NavLink>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "text-blue-400" : ""
+                    }
+                    to="/register"
+                  >
+                    Register
+                  </NavLink>
                 </li>
               </>
             )}
@@ -73,16 +113,36 @@ function Navbar() {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to="/">Home</NavLink>
+            <NavLink
+              className={({ isActive }) => (isActive ? "text-blue-400" : "")}
+              to="/"
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink className={({isActive})=>isActive ? 'text-blue-400':''}  to='/all'>All Groups</NavLink>
+            <NavLink
+              className={({ isActive }) => (isActive ? "text-blue-400" : "")}
+              to="/all"
+            >
+              All Groups
+            </NavLink>
           </li>
           <li>
-            <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to='/create'>Create Group</NavLink>
+            <NavLink
+              className={({ isActive }) => (isActive ? "text-blue-400" : "")}
+              to="/create"
+            >
+              Create Group
+            </NavLink>
           </li>
           <li>
-            <NavLink className={({isActive})=>isActive ? 'text-blue-400':''} to='/mygroups'>My Groups</NavLink>
+            <NavLink
+              className={({ isActive }) => (isActive ? "text-blue-400" : "")}
+              to="/mygroups"
+            >
+              My Groups
+            </NavLink>
           </li>
         </ul>
       </div>
@@ -91,10 +151,25 @@ function Navbar() {
           <>
             <div className="avatar hidden md:flex">
               <div className="w-12 rounded-full">
-                <img data-tooltip-id="name" data-tooltip-content={user.userData?.displayName} data-tooltip-place="left" src={user.userData.photoURL?.startsWith('https://')?user.userData.photoURL:'https://img.daisyui.com/images/profile/demo/yellingcat@192.webp'} />
+                <img
+                  data-tooltip-id="name"
+                  data-tooltip-content={user.userData?.displayName}
+                  data-tooltip-place="left"
+                  src={
+                    typeof user.userData?.photoURL === "string" &&
+                    user.userData.photoURL.startsWith("https://")
+                      ? user.userData.photoURL
+                      : "https://img.daisyui.com/images/profile/demo/yellingcat@192.webp"
+                  }
+                />
               </div>
             </div>
-            <button onClick={handleLogout} className="btn btn-primary hidden md:flex">Logout</button>
+            <button
+              onClick={handleLogout}
+              className="btn btn-primary hidden md:flex"
+            >
+              Logout
+            </button>
           </>
         ) : (
           <>
@@ -111,7 +186,7 @@ function Navbar() {
         )}
         <Toggle />
       </div>
-      <Tooltip id="name"/>
+      <Tooltip id="name" />
     </div>
   );
 }
