@@ -62,5 +62,11 @@ VITE_appId=1:197764035216:web:cfbeb86c7f30ad2d0f1e15
 
 
 ### Install dependencies
-```bash
-npm install
+```
+pnpm install
+```
+
+### Run server
+```
+pnpm dev
+```
