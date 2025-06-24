@@ -20,7 +20,7 @@ server side repo: https://github.com/Programming-Hero-Web-Course4/b11a10-server-
 
 | Home Page | All Groups | Group Details |
 |-----------|------------|----------------|
-| ![Home](./screenshots/home.png) | ![All Groups](./screenshots/all-groups.png) | ![Details](./screenshots/group-details.png) |
+| ![Home](./home.png) | ![All Groups](./allgroup.png) | ![Details](./group.png) |
 
 ---
 
