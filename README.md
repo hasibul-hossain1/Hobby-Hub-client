@@ -52,21 +52,15 @@ server side repo: https://github.com/Programming-Hero-Web-Course4/b11a10-server-
 - MongoDB
 - Firebase project with Google Auth enabled
 
-### Install dependencies
-
-<details>
-  <summary>📄 <strong>Click to view .env.local file</strong></summary>
-
-```env
+.env.local File
 VITE_apiKey=AIzaSyCwulT3hpKLHFKKKPajdRCPsP9tDs3SzKc
 VITE_authDomain=assignment-10-7a507.firebaseapp.com
 VITE_projectId=assignment-10-7a507
 VITE_storageBucket=assignment-10-7a507.appspot.com
 VITE_messagingSenderId=197764035216
 VITE_appId=1:197764035216:web:cfbeb86c7f30ad2d0f1e15
-</details> ```
 
 
-
+### Install dependencies
 ```bash
 npm install
