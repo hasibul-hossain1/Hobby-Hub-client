@@ -5,20 +5,21 @@ import Loading from "../common/Loading";
 
 function FeaturedGroup() {
   const groups = useLoaderData();
-  if (!groups) return <Loading/>
+  if (!groups) return <Loading />;
 
   return (
-    <section className="px-8 md:px-15 lg:px-32 xl:px-64 2xl:px-72 my-32">
+    <section className="px-8 md:px-15 lg:px-32 xl:px-48 my-32">
       <h2 className="text-center mb-16 text-3xl font-bold">
-        Our Featured Group
+        Our Featured Groups
       </h2>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[...groups].reverse().map((group, index) => {
-          if (index > 5) {
-            return;
-          }
-          return <GroupCard key={group._id} group={group} />;
-        })}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {[...groups]
+          .reverse()
+          .slice(0, 4) // Show only 4 cards
+          .map((group) => (
+            <GroupCard key={group._id} group={group} />
+          ))}
       </div>
     </section>
   );

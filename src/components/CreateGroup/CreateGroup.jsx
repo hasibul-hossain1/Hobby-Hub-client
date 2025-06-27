@@ -21,7 +21,7 @@ const CreateGroup = () => {
     })
       .then((res) => res.json())
       .then(() => {
-        navigate('/mygroups')
+        navigate('/dashboard/my-groups')
         toast.success('Group Created Successfully')
       })
       .catch(() =>{
@@ -30,7 +30,7 @@ const CreateGroup = () => {
   };
 
   return (
-      <div className="max-w-2xl mt-32 mx-auto p-6 bg-base-200 rounded-xl shadow-md">
+      <div className="max-w-2xl mt-5 mx-auto p-6 bg-base-200 rounded-xl shadow-md">
         <h2 className="text-3xl font-bold mb-6 text-center">
           Create a New Hobby Group
         </h2>

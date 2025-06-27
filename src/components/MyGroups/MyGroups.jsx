@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router";
-import { useUserContext } from "../contexts/FirebaseContext/UserContext";
+import { useUserContext } from "../contexts/FirebaseContext/UserContext"; 
 import Group from "./Group";
 
 import Loading from "../common/Loading";
@@ -19,8 +19,12 @@ function MyGroups() {
   }, [allGroups, user]);
   if (!allGroups) return <Loading />;
   return (
-    <section className="overflow-x-auto mt-32 max-w-6xl mx-auto">
+    <section className="overflow-x-auto mt-5 max-w-6xl mx-auto">
        <Tooltip id="details" />
+       <h2 className="text-3xl font-bold text-center mb-8">
+          My Groups
+        </h2>
+        <div className="divider"></div>
       {groups.length ? (
         <table className="table">
           {/* head */}

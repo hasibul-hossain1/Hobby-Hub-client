@@ -4,14 +4,10 @@ import { Outlet } from 'react-router'
 import Footer from './components/common/Footer'
 import { useUserContext } from './components/contexts/FirebaseContext/UserContext'
 import Loading from './components/common/Loading'
-import { useEffect } from 'react'
 import { Toaster } from 'react-hot-toast'
 
 function App() {
    const [user]=useUserContext()
-   useEffect(()=>{
-    
-   })
   return (
     <main>
       <Navbar/>

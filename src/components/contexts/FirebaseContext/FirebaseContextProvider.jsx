@@ -12,6 +12,7 @@ function FirebaseContextProvider({ children }) {
         userIsError:false,
         userErrorMessage:null
     })
+    
   
   useEffect(() => {
     const Unsubscribe = onAuthStateChanged(auth, () => {

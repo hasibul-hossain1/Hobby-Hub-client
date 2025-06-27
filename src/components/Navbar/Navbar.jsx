@@ -76,6 +76,26 @@ function Navbar() {
                 My Groups
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                className={({ isActive }) => (isActive ? "text-blue-400" : "")}
+                to="/contact"
+              >
+                Contact Us
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) => (isActive ? "text-blue-400" : "")}
+                to="/about"
+              >
+                About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/dashboard">Dashboard</NavLink>
+            </li>
+
             {user.userData ? (
               <li className="md:hidden">
                 <button onClick={handleLogout} className="md:hidden">
@@ -128,20 +148,21 @@ function Navbar() {
               All Groups
             </NavLink>
           </li>
+
           <li>
             <NavLink
               className={({ isActive }) => (isActive ? "text-blue-400" : "")}
-              to="/create"
+              to="/contact"
             >
-              Create Group
+              Contact Us
             </NavLink>
           </li>
           <li>
             <NavLink
               className={({ isActive }) => (isActive ? "text-blue-400" : "")}
-              to="/mygroups"
+              to="/about"
             >
-              My Groups
+              About
             </NavLink>
           </li>
         </ul>
@@ -149,6 +170,12 @@ function Navbar() {
       <div className="navbar-end space-x-2">
         {user.userData ? (
           <>
+            <Link
+              className="btn border-primary hover:btn-primary"
+              to="/dashboard"
+            >
+              Dashboard
+            </Link>
             <div className="avatar hidden md:flex">
               <div className="w-12 rounded-full">
                 <img

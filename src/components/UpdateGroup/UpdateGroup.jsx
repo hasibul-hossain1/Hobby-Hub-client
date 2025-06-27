@@ -25,7 +25,7 @@ if (!targetGroup) return <Loading/>
     })
       .then((res) => res.json())
       .then(() =>{
-        navigate('/mygroups')
+        navigate('/dashboard/my-groups')
         toast.success('Group Updated Successfully')
       })
       .catch(() =>{

@@ -77,7 +77,7 @@ function Group({ item, index, setGroups }) {
             <TbListDetails />
           </Link>
           <Link
-            to={`/update/${item._id}`}
+            to={`/dashboard/update/${item._id}`}
             data-tooltip-id="details"
             data-tooltip-content={"Edit"}
             data-tooltip-place="top"

@@ -1,13 +1,9 @@
 import { Link, useNavigate } from 'react-router'
-import { useEffect } from 'react'
 import Navbar from '../Navbar/Navbar'
 import Footer from '../common/Footer'
 
 function NotFound() {
     const navigate =useNavigate()
-    useEffect(()=>{
-        document.title='404 not found page'
-    },[])
   return (
     <>
     <Navbar/>
