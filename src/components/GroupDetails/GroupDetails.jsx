@@ -12,7 +12,6 @@ function GroupDetails() {
     if (!group?.endDate) return false;
     const now = new Date();
     const deadline = new Date(group.endDate);
-    console.log(now,deadline);
     return deadline < now;
   };
   const isDisabled=isJoinDisabled()

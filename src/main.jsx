@@ -18,6 +18,7 @@ import NotFound from "./components/NotFoundPage/NotFound.jsx";
 import ContactUs from "./components/Contact/ContactUs.jsx";
 import About from "./components/About/AboutUs.jsx";
 import DashboardLayout from "./components/Layouts/DashboardLayout.jsx";
+import Overview from "./components/Overview/Overview.jsx";
 
 const router = createBrowserRouter([
   {
@@ -63,11 +64,16 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element:<PrivateRoute><DashboardLayout/></PrivateRoute> ,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,
-        element: <div>This is overview page</div>,
+        Component: Overview,
+        loader: () => fetch("https://backend-opal-delta-19.vercel.app/groups"),
       },
       {
         path: "/dashboard/all",
@@ -108,8 +114,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-      <FirebaseContextProvider>
-        <RouterProvider router={router} />
-      </FirebaseContextProvider>
+    <FirebaseContextProvider>
+      <RouterProvider router={router} />
+    </FirebaseContextProvider>
   </StrictMode>
 );
